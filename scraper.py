@@ -62,7 +62,7 @@ def parseHouse(houseEl):
         scraperwiki.sqlite.save(unique_keys=['extracted_on','address'], data={
             "extracted_on": extractedOn,
             "suburb": suburb,
-	        "address": h_address,
+	    "address": h_address,
             "bedrooms": h_bedrooms,
             "bathrooms": h_bathrooms,
             "carparks": h_carparks,
@@ -84,10 +84,10 @@ def parse(url):
 
     #iterate through houses
     for houseEl in root.cssselect('article[class^=resultBody]'):
-        try:
-            parseHouse(houseEl)
-        except:
-            print 'Error: Cannot parse house!'
+        
+        parseHouse(houseEl)
+        #except:
+        #    print 'Error: Cannot parse house!'
 
 
     nextLink = getNextLink(root)
