@@ -23,7 +23,7 @@ def getNextLink(root):
 def getStartURL(suburb, postcode):
     return "http://www.realestate.com.au/buy/in-"+ re.sub(" ","+",suburb) +"%2c+vic+" + postcode + "%3b/list-1?includeSurrounding=false"
 
-def parseHouse(houseEl):
+def parseHouse(houseEl, suburb):
         #get the address
         try:
             h_address = houseEl.cssselect('a[class=name]')[0].text
@@ -77,7 +77,7 @@ def parseHouse(houseEl):
         #print '----------------------------------------------------'
 
 
-def parse(url):
+def parse(url, suburb):
 
     html = scraperwiki.scrape(url)
     root = lxml.html.fromstring(html)
@@ -85,7 +85,7 @@ def parse(url):
     #iterate through houses
     for houseEl in root.cssselect('article[class^=resultBody]'):
         
-        parseHouse(houseEl)
+        parseHouse(houseEl, suburb)
         #except:
         #    print 'Error: Cannot parse house!'
 
@@ -105,4 +105,4 @@ def parse(url):
 for line in dictReader:
     parse(getStartURL(
        suburb=line["Suburb"],
-       postcode=line["PostCode"]))
+       postcode=line["PostCode"]), suburb)
