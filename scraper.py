@@ -94,17 +94,14 @@ def parse(url, suburb):
     nextLink = getNextLink(root)
 
     if nextLink == '':
-        print 'THE END'
+        print suburb + ' parsed'
     else:
-        print '========= NEXT PAGE ============='
-        print nextLink
-
         parse(nextLink, suburb)
 
 #parse(getStartURL('cheltenham', '3030'))
 
 for line in dictReader:
-    print '>>>>>>>>Scraping ' + line["Suburb"]  	
+    print 'Scraping ' + line["Suburb"]  	
     parse(getStartURL(
        suburb=line["Suburb"],
        postcode=line["PostCode"]), line["Suburb"])
