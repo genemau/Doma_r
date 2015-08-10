@@ -105,4 +105,4 @@ def parse(url, suburb):
 for line in dictReader:
     parse(getStartURL(
        suburb=line["Suburb"],
-       postcode=line["PostCode"]), suburb)
+       postcode=line["PostCode"]), line["Suburb"])
