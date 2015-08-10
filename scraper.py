@@ -30,7 +30,7 @@ def parseHouse(houseEl, suburb):
         except:
             h_address = errorValue
 
-        print 'address: ' + h_address
+        #print 'address: ' + h_address
 
         try:
             features=houseEl.cssselect('dl[class^=rui-property-features] dd')
@@ -85,9 +85,10 @@ def parse(url, suburb):
     #iterate through houses
     for houseEl in root.cssselect('article[class^=resultBody]'):
         
-        parseHouse(houseEl, suburb)
-        #except:
-        #    print 'Error: Cannot parse house!'
+        try:
+            parseHouse(houseEl, suburb)
+        except:
+            print 'Error: Cannot parse house!'
 
 
     nextLink = getNextLink(root)
